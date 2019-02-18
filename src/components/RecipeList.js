@@ -1,29 +1,9 @@
 import React, { Component } from 'react';
 import Recipe from './Recipe';
-import { recipes } from '../tempList';
 
 class RecipeList extends Component {
-  state = {
-    recipes: recipes,
-    url:
-      'https://www.food2fork.com/api/search?key=6b77e779247b0c123f91fc9370b24d3b&q=shredded%20chicken'
-  };
-
-  // getRecipes = async () => {
-  //   const data = await fetch(this.state.url);
-  //   const jsonData = await data.json();
-
-  //   this.setState({
-  //     recipes: jsonData.recipes
-  //   });
-  // };
-
-  // componentDidMount() {
-  //   this.getRecipes();
-  // }
-
   render() {
-    const { recipes } = this.state;
+    const { recipes } = this.props;
     return (
       <>
         <div className="container">

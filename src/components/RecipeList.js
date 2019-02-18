@@ -3,7 +3,7 @@ import Recipe from './Recipe';
 
 class RecipeList extends Component {
   render() {
-    const { recipes } = this.props;
+    const { recipes, onDetailsClick } = this.props;
     return (
       <>
         <div className="container">
@@ -19,7 +19,7 @@ class RecipeList extends Component {
                   className="col-10 mx-auto col-md-6 col-lg-4 my-3 "
                   key={recipe.recipe_id}
                 >
-                  <Recipe recipe={recipe} />
+                  <Recipe recipe={recipe} onDetailsClick={onDetailsClick} />
                 </div>
               );
             })}

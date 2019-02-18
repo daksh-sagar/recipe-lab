@@ -12,15 +12,25 @@ class Recipe extends Component {
     return (
       <>
         <div className="card">
-          <img src={image_url} alt="" className="card-img-top" />
+          <img
+            src={image_url}
+            alt=""
+            className="card-img-top"
+            style={{ height: '14rem' }}
+          />
           <div className="card-body text-capitalize">
-            <h3 className="card-title ">{title}</h3>
+            <h4>{title}</h4>
             <h4 className="cursive-text text-primary">
               provided by {publisher}
             </h4>
           </div>
           <div className="card-footer d-flex justify-content-around">
-            <button className="btn btn-outline-primary">Details</button>
+            <button
+              className="btn btn-outline-primary"
+              onClick={() => this.props.onDetailsClick(recipe_id)}
+            >
+              Details
+            </button>
             <a
               href={source_url}
               className="btn btn-outline-success"

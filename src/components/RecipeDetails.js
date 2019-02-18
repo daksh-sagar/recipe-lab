@@ -36,7 +36,10 @@ class RecipeDetails extends Component {
         <div className="container">
           <div className="row">
             <div className="col-10 mx-auto col-md-6 my-3">
-              <button className="btn btn-outline-warning mb-5 text-capitalize">
+              <button
+                className="btn btn-outline-warning mb-5 text-capitalize"
+                onClick={this.props.onBackToRecipesClick}
+              >
                 back to recipe list
               </button>
               <img src={image_url} alt="" className="d-block w-100" />

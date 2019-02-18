@@ -10,28 +10,61 @@ class App extends Component {
     recipes: recipes,
     url:
       'https://www.food2fork.com/api/search?key=6b77e779247b0c123f91fc9370b24d3b&q=shredded%20chicken',
-    recipe_id: 35386
+    recipe_id: null,
+    displayList: true
   };
 
-  // getRecipes = async () => {
-  //   const data = await fetch(this.state.url);
-  //   const jsonData = await data.json();
+  getRecipes = async () => {
+    const data = await fetch(this.state.url);
+    const jsonData = await data.json();
 
-  //   this.setState({
-  //     recipes: jsonData.recipes
-  //   });
-  // };
+    this.setState({
+      recipes: jsonData.recipes
+    });
+  };
 
-  // componentDidMount() {
-  //   this.getRecipes();
-  // }
+  componentDidMount() {
+    this.getRecipes();
+  }
+
+  handleDetailsClick = recipe_id => {
+    this.setState({
+      ...this.state,
+      displayList: false,
+      recipe_id
+    });
+  };
+
+  handleBackToRecipesClick = () => {
+    this.setState({
+      ...this.state,
+      displayList: true
+    });
+  };
+
+  renderListOrDetail = displayList => {
+    if (displayList) {
+      return (
+        <RecipeList
+          recipes={this.state.recipes}
+          onDetailsClick={this.handleDetailsClick}
+        />
+      );
+    } else {
+      return (
+        <RecipeDetails
+          id={this.state.recipe_id}
+          onBackToRecipesClick={this.handleBackToRecipesClick}
+        />
+      );
+    }
+  };
 
   render() {
     return (
       <div className="App">
         <Search />
-        {/* <RecipeList recipes={this.state.recipes} /> */}
-        <RecipeDetails id={this.state.recipe_id} />
+        {this.renderListOrDetail(this.state.displayList)}
       </div>
     );
   }

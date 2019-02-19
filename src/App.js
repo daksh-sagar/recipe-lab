@@ -8,11 +8,15 @@ import Search from './components/Search';
 class App extends Component {
   state = {
     recipes: null,
-    url: `https://www.food2fork.com/api/search?key=8141dc5a9c04ad0ca2de49feaf9e03a3`,
+    url: `https://www.food2fork.com/api/search?key=${
+      process.env.FOOD2FORK_API_KEY
+    }`, //8141dc5a9c04ad0ca2de49feaf9e03a3
     recipe_id: null,
     displayList: true,
     searchText: '',
-    base_url: `https://www.food2fork.com/api/search?key=8141dc5a9c04ad0ca2de49feaf9e03a3`
+    base_url: `https://www.food2fork.com/api/search?key=${
+      process.env.FOOD2FORK_API_KEY
+    }`
   };
 
   getRecipes = async () => {

@@ -7,9 +7,9 @@ class RecipeDetails extends Component {
 
     this.state = {
       recipe: null,
-      url: `https://www.food2fork.com/api/get?key=${
-        process.env.FOOD2FORK_API_KEY
-      }&rId=${this.props.id}`
+      url: `https://www.food2fork.com/api/get?key=135461318b0ef335f25f3892921bccd9&rId=${
+        this.props.id
+      }`
     };
   }
 

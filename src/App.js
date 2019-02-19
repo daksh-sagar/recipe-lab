@@ -3,15 +3,16 @@ import './App.css';
 import RecipeList from './components/RecipeList';
 import RecipeDetails from './components/RecipeDetails';
 import Search from './components/Search';
-import { recipes } from './tempList';
+// import { recipes } from './tempList';
 
 class App extends Component {
   state = {
-    recipes: recipes,
-    url:
-      'https://www.food2fork.com/api/search?key=6b77e779247b0c123f91fc9370b24d3b&q=shredded%20chicken',
+    recipes: null,
+    url: `https://www.food2fork.com/api/search?key=8141dc5a9c04ad0ca2de49feaf9e03a3`,
     recipe_id: null,
-    displayList: true
+    displayList: true,
+    searchText: '',
+    base_url: `https://www.food2fork.com/api/search?key=8141dc5a9c04ad0ca2de49feaf9e03a3`
   };
 
   getRecipes = async () => {
@@ -25,11 +26,12 @@ class App extends Component {
 
   componentDidMount() {
     this.getRecipes();
+    // console.log('called cdm');
   }
 
   handleDetailsClick = recipe_id => {
     this.setState({
-      ...this.state,
+      // ...this.state,
       displayList: false,
       recipe_id
     });
@@ -37,11 +39,32 @@ class App extends Component {
 
   handleBackToRecipesClick = () => {
     this.setState({
-      ...this.state,
+      // ...this.state,
       displayList: true
     });
   };
 
+  handleChange = event => {
+    // console.log(event.target.value);
+    this.setState({
+      searchText: event.target.value
+    });
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+    // console.log('submitted');
+    this.setState(
+      {
+        url: `${this.state.base_url}&q=${this.state.searchText}`
+      },
+      () => {
+        this.getRecipes();
+      }
+    );
+  };
+
+  // Handles which component to render, the RecipesList or the RecipeDetail
   renderListOrDetail = displayList => {
     if (displayList) {
       return (
@@ -63,7 +86,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Search />
+        <Search
+          value={this.state.searchText}
+          onChange={this.handleChange}
+          onSubmit={this.handleSubmit}
+        />
         {this.renderListOrDetail(this.state.displayList)}
       </div>
     );

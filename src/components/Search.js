@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 class Search extends Component {
   render() {
+    const { onSubmit, onChange, value } = this.props;
     return (
       <>
         <div className="container">
@@ -11,7 +12,7 @@ class Search extends Component {
                 Search for, the Recipe{' '}
                 <span className="text-danger">on your mind</span>
               </h1>
-              <form className="my-5">
+              <form className="my-5" onSubmit={onSubmit}>
                 <label htmlFor="search" className="text-capitalize">
                   recipes separated by comma
                 </label>
@@ -21,6 +22,8 @@ class Search extends Component {
                     name="search"
                     placeholder="chicken,onions,carrots"
                     className="form-control"
+                    value={value}
+                    onChange={onChange}
                   />
                   <div className="input-group-append">
                     <button

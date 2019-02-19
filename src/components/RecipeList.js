@@ -13,16 +13,20 @@ class RecipeList extends Component {
             </div>
           </div>
           <div className="row">
-            {recipes.map(recipe => {
-              return (
-                <div
-                  className="col-10 mx-auto col-md-6 col-lg-4 my-3 "
-                  key={recipe.recipe_id}
-                >
-                  <Recipe recipe={recipe} onDetailsClick={onDetailsClick} />
-                </div>
-              );
-            })}
+            {recipes ? (
+              recipes.map(recipe => {
+                return (
+                  <div
+                    className="col-10 mx-auto col-md-6 col-lg-4 my-3 "
+                    key={recipe.recipe_id}
+                  >
+                    <Recipe recipe={recipe} onDetailsClick={onDetailsClick} />
+                  </div>
+                );
+              })
+            ) : (
+              <h3 className="cursive-text text-warning">Loading...</h3>
+            )}
           </div>
         </div>
       </>
